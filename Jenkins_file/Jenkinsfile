@@ -1,40 +1,30 @@
 pipeline {
-    agent none
-
+    agent {
+        label 'agent'
+    }
     stages {
-        stage('Build and run') {
-          parallel {
-            stage('master-agent-pipeline') {
-              agent {label 'master'}
-              stages{
-                stage('Build') {
-                steps {
-                  echo 'Building..'
-                  }
-                }
-                stage('Test') {
-                  steps {
-                    echo 'Testing..'
-                 }
-                }
-	       }
-              }
-            stage('ubuntu-agent-pipeline') {
-              agent {label 'agent'}
-              stages{
-                stage('Build') {
-                steps {
-                  echo 'Building..'
-                  }
-                }
-                stage('Test') {
-                  steps {
-                    echo 'Testing..'
-                 }
-                }
-               }
-              }
-             }
+        stage('Example Stage') {
+            steps {
+                // Add your build steps here
+                echo 'This job is running on the specified agent'
             }
-           }
-          }
+        }
+        
+          stage('Example Stage1') {
+            steps {
+                // Add your build steps here
+                echo 'This job is running on the specified agent done'
+                }
+        
+        }
+        
+         stage('Example Stage2') {
+            steps {
+                // Add your build steps here
+                echo 'This job is running on the specified agent done done'
+                }
+        
+        }
+    }
+}
+
