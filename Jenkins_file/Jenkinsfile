@@ -1,0 +1,40 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Build and run') {
+          parallel {
+            stage('master-agent-pipeline') {
+              agent {label 'main'}
+              stages{
+                stage('Build') {
+                steps {
+                  echo 'Building..'
+                  }
+                }
+                stage('Test') {
+                  steps {
+                    echo 'Testing..'
+                 }
+                }
+	       }
+              }
+            stage('ubuntu-agent-pipeline') {
+              agent {label 'agent'}
+              stages{
+                stage('Build') {
+                steps {
+                  echo 'Building..'
+                  }
+                }
+                stage('Test') {
+                  steps {
+                    echo 'Testing..'
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
