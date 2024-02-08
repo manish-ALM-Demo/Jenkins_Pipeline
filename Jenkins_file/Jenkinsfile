@@ -5,7 +5,7 @@ pipeline {
         stage('Build and run') {
           parallel {
             stage('master-agent-pipeline') {
-              agent {label 'main'}
+              agent {label 'master'}
               stages{
                 stage('Build') {
                 steps {
